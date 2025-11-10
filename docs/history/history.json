@@ -1,1 +1,1 @@
-{"Test Suite:01_yandexPay#01_yandexPay":{"statistic":{"failed":1,"broken":0,"skipped":0,"passed":0,"unknown":0,"total":1},"items":[{"uid":"c2636e5ac41be8bf","status":"failed","time":{"duration":11000}}]}}
+{"Test Suite:01_yandexPay#01_yandexPay":{"statistic":{"failed":1,"broken":0,"skipped":0,"passed":0,"unknown":0,"total":1},"items":[{"uid":"a156c6081375a6dc","status":"failed","time":{"duration":259000}}]}}
