@@ -1,0 +1,6 @@
+appId: ru.karofilm.app
+---
+- launchApp
+- runFlow: "01_uncorrect_autoriz.yaml"
+- runFlow: "02_yandexPay.yaml"
+- clearState   

@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites>
+  <testsuite name="Test Suite" device="FAJB4DONQCIZXOPR" tests="1" failures="1" time="20.0">
+    <testcase id="01_uncorrect_autoriz" name="01_uncorrect_autoriz" classname="01_uncorrect_autoriz" time="20.0" status="ERROR">
+      <failure>Assertion is false: "Авторизуйтесь и получайте до 15%\ баллами от покупок билетов\ и продукции кинобара" is visible</failure>
+    </testcase>
+  </testsuite>
+</testsuites>

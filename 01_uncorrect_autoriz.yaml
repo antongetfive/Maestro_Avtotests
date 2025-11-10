@@ -1,0 +1,51 @@
+appId: ru.karofilm.app
+
+settings:
+  screenshot-on-failure: true   # Скриншоты при падении шага
+
+
+---
+
+- runFlow:
+    when:
+      visible: "Разрешить приложению КАРО доступ к данным о местоположении устройства?"
+    commands:
+      - tapOn:
+          id: "com.android.permissioncontroller:id/permission_allow_foreground_only_button"
+
+- assertVisible: "Авторизуйтесь и получайте до 15%\\ баллами от покупок билетов\\ и продукции кинобара"
+- assertVisible: "Вход"
+- assertVisible: "Пропустить"
+- tapOn: "Пропустить"
+- assertVisible: "Выберите город"
+- tapOn: "Москва и МО"
+- tapOn: "Сохранить"
+
+# Далее остальные шаги
+- tapOn:
+    point: "50%,49%"
+- tapOn:
+    point: "50%,49%"
+- tapOn:
+    point: "50%,49%"
+- tapOn:
+    point: "50%,49%"
+- tapOn:
+    point: "50%,49%"
+- tapOn:
+    point: "50%,49%"
+
+- assertVisible: "Все фильмы"
+- swipe:
+    start: "52%,34%"
+    end: "50%,7%"
+- tapOn:
+    point: "26%,75%"
+- swipe:
+    start: "52%,34%"
+    end: "50%,7%"
+- tapOn:
+    point: "18%,59%"
+- tapOn:
+    point: "52%,37%"
+

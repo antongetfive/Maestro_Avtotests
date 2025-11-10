@@ -1,0 +1,91 @@
+appId: ru.karofilm.app
+
+settings:
+  screenshot-on-failure: true   # Скриншоты при падении шага
+
+---
+- launchApp
+- assertVisible: "Подарочные карты"
+- assertVisible: "Репертуар"
+- assertVisible: "Профиль"
+- tapOn: "Пн"
+- tapOn:
+    point: "73%,83%"
+- scrollUntilVisible:
+    centerElement: true
+    element:
+      text: "11:40"
+- tapOn: "11:40"
+- assertVisible: "Выберите место"
+- runFlow:
+    when:
+      visible: 'Перемещайтесь по схеме зала, двигая двумя пальцами по экрану. Для выбора места схему можно масштабировать'
+    commands:
+        - tapOn: 
+            point: "50%,50%"
+- tapOn:
+    point: "53%,48%"
+- runFlow:
+    when:
+      notVisible: "Выберите тип билета"
+    commands:
+        - tapOn: 
+            point: "67%,48%"
+- assertVisible: "Выберите тип билета"
+- tapOn: "Учащиеся"
+- tapOn: "1 билет"
+- runFlow:
+    when:
+      visible: "Пропустить"
+    commands:
+        - tapOn: "Пропустить"
+- assertVisible: "Промокод"
+- assertVisible: "Данные для получения заказа"
+- tapOn:
+    point: "50%,16%"
+- tapOn:
+    point: "8%,62%"
+- tapOn:
+    point: "8%,67%"
+- tapOn:
+    point: "8%,74%"
+- tapOn: "Перейти к оплате"
+- tapOn:
+    point: "50%,79%"
+- extendedWaitUntil:
+    visible: "Сбербанк"
+    timeout: 90000 
+- tapOn: "Сбербанк"
+- assertVisible: "Яндекс"
+- tapOn:
+    point: "50%,85%"
+- extendedWaitUntil:
+    visible: "Bank logo"
+    timeout: 60000 
+- swipe:  
+    start: "22%,2%"
+    end: "46%,66%"
+- extendedWaitUntil:
+    visible: "Скопировать код"
+    timeout: 90000 
+- tapOn: "Скопировать код"
+- extendedWaitUntil:
+    notVisible: "com.android.systemui:id/text_preview"
+- longPressOn:
+    point: "50%,89%"
+- tapOn: "Вставить"
+# - tapOn:
+#     id: "passwordEdit"
+# - tapOn:
+#     id: "com.google.android.inputmethod.latin:id/0_resource_name_obfuscated"
+#     index: 5
+- tapOn: "Вернуться в магазин"
+- assertVisible: "Проверка статуса оплаты"
+- extendedWaitUntil:
+    visible: "Код брони"
+    timeout: 150000 
+- swipe:  
+    start: "22%,2%"
+    end: "46%,66%"
+- tapOn:
+    id: "com.android.systemui:id/dismiss_text"
