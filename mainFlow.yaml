@@ -1,6 +1,2 @@
-appId: ru.karofilm.app
----
-- launchApp
-- runFlow: "01_uncorrect_autoriz.yaml"
-- runFlow: "02_yandexPay.yaml"
-- clearState   
+./01_flowPokupka.sh #Запустить тесты#
+./publish_allure_report.sh #Прислать ссылку на отчет в Allure с github#
