@@ -1,3 +1,0 @@
-Build Timestamp: 2025-11-18 16:58:19
-Report Generated: Tue Nov 18 16:58:19 MSK 2025
-Source: allure-results
