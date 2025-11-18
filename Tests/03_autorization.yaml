@@ -1,0 +1,42 @@
+appId: ru.karofilm.app
+jsEngine: graaljs
+settings:
+  screenshot-on-failure: true
+
+
+---
+
+- tapOn: "Вход"
+- assertVisible: "Вход в личный кабинет"
+
+# Ввод номера телефона
+- tapOn: "+7 (___) ___-__-__"
+- tapOn:
+     id: "com.google.android.inputmethod.latin:id/key_pos_number_line3_3"
+- tapOn:
+     id: "com.google.android.inputmethod.latin:id/key_pos_number_line1_2"
+- tapOn:
+     id: "com.google.android.inputmethod.latin:id/key_pos_number_line4_2"
+- tapOn:
+     id: "com.google.android.inputmethod.latin:id/key_pos_number_line1_1"
+- tapOn:
+     id: "com.google.android.inputmethod.latin:id/key_pos_number_line1_3"
+- tapOn:
+     id: "com.google.android.inputmethod.latin:id/key_pos_number_line4_2"
+- tapOn:
+     id: "com.google.android.inputmethod.latin:id/key_pos_number_line1_1"
+- tapOn:
+     id: "com.google.android.inputmethod.latin:id/key_pos_number_line2_3"
+- tapOn:
+     id: "com.google.android.inputmethod.latin:id/key_pos_number_line2_3"
+- tapOn:
+     id: "com.google.android.inputmethod.latin:id/key_pos_number_line2_3"
+- tapOn: "Продолжить"
+- tapOn:
+    point: "50%,50%"
+- runScript:
+    file: maestro_scripts/getCode.js
+- inputText: ${output.otp}
+- assertVisible: "Москва и МО"
+- tapOn: "Москва и МО"
+- tapOn: "Сохранить"

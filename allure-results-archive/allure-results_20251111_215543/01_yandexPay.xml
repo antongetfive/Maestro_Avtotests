@@ -1,8 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<testsuites>
-  <testsuite name="Test Suite" device="FAJB4DONQCIZXOPR" tests="1" failures="1" time="311.0">
-    <testcase id="01_yandexPay" name="01_yandexPay" classname="01_yandexPay" time="311.0" status="ERROR">
-      <failure>Assertion is false: "Покупка Яндекс Пэй" is visible</failure>
-    </testcase>
-  </testsuite>
-</testsuites>

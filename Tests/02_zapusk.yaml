@@ -1,0 +1,19 @@
+appId: ru.karofilm.app
+
+settings:
+  screenshot-on-failure: true   # Скриншоты при падении шага
+
+
+---
+- launchApp
+- runFlow:
+    when:
+      visible: "Разрешить приложению КАРО отправлять уведомления?"
+    commands:
+        - tapOn: "Разрешить"
+- runFlow:
+    when:
+      visible: "Разрешить приложению КАРО доступ к данным о местоположении устройства?"
+    commands:
+        - tapOn: "При использовании приложения"
+- assertVisible: "Вход"
