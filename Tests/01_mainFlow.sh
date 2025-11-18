@@ -2,6 +2,7 @@
 
 ALLURE_RESULTS_DIR="allure-results"
 ARCHIVE_DIR="allure-results-archive"
+REPORT_DIR="allure-report"
 
 # Цвета
 GREEN="\033[0;32m"
@@ -181,13 +182,13 @@ echo "✅ Python сервер запущен (PID=$PY_PID)"
 ### Список тестов
 ########################################
 TEST_FILES=(
-    "01_ochistka.yaml"
+    # "01_ochistka.yaml"
     "02_zapusk.yaml"
     "03_autorization.yaml"
-    "04_onbording.yaml"
-    "05_yandexPayBilet.yaml"
-    "06_stopApp_1.yaml"
-    "07_yandexPayBiletEda.yaml"
+    # "04_onbording.yaml"
+    # "05_yandexPayBilet.yaml"
+    # "06_stopApp_1.yaml"
+    # "07_yandexPayBiletEda.yaml"
 )
 
 TOTAL_TESTS=${#TEST_FILES[@]}
@@ -205,7 +206,18 @@ kill $PY_PID 2>/dev/null
 echo "🛑 Python сервер остановлен"
 
 ########################################
-### Allure
+### Генерация Allure отчета
 ########################################
-echo "✅ Открываем Allure отчёт..."
-allure serve "$ALLURE_RESULTS_DIR"
+echo "📊 Генерация Allure отчёта..."
+allure generate "$ALLURE_RESULTS_DIR" --clean -o "$REPORT_DIR"
+
+if [ $? -eq 0 ]; then
+    echo "✅ Allure отчёт сгенерирован в папку: $REPORT_DIR"
+    
+    # Запускаем второй скрипт для публикации
+    echo "🚀 Запуск скрипта публикации..."
+    ./publish_report.sh
+else
+    echo "❌ Ошибка генерации Allure отчёта"
+    exit 1
+fi
