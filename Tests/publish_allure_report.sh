@@ -3,8 +3,14 @@
 # -------------------------------
 # 1) Настройки
 # -------------------------------
-DOCS_DIR="docs"
 RESULTS_DIR="allure-results"
+DOCS_DIR="docs"
+TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
+REPORT_DIR="$DOCS_DIR/report_$TIMESTAMP"
+
+# -------------------------------
+# 2) Получение URL репозитория
+# -------------------------------
 REPO_URL=$(git config --get remote.origin.url)
 
 if [ -z "$REPO_URL" ]; then
@@ -13,7 +19,7 @@ if [ -z "$REPO_URL" ]; then
 fi
 
 # -------------------------------
-# 2) Проверяем наличие allure-results
+# 3) Проверяем наличие allure-results
 # -------------------------------
 if [ ! -d "$RESULTS_DIR" ]; then
   echo "❌ Папка $RESULTS_DIR не найдена!"
@@ -21,17 +27,16 @@ if [ ! -d "$RESULTS_DIR" ]; then
 fi
 
 # -------------------------------
-# 3) Очистка docs/
+# 4) Создаём docs/report_TIMESTAMP/
 # -------------------------------
-echo "🧹 Очищаю $DOCS_DIR..."
-rm -rf "$DOCS_DIR"
-mkdir "$DOCS_DIR"
+echo "📁 Создаю папку отчёта: $REPORT_DIR"
+mkdir -p "$REPORT_DIR"
 
 # -------------------------------
-# 4) Генерация отчёта
+# 5) Генерация Allure отчёта
 # -------------------------------
 echo "📊 Генерирую Allure Report..."
-allure generate "$RESULTS_DIR" --clean -o "$DOCS_DIR"
+allure generate "$RESULTS_DIR" --clean -o "$REPORT_DIR"
 
 if [ $? -ne 0 ]; then
   echo "❌ Ошибка генерации отчёта!"
@@ -39,33 +44,36 @@ if [ $? -ne 0 ]; then
 fi
 
 # -------------------------------
-# 5) Git commit + push
+# 6) Коммитим изменения
 # -------------------------------
-echo "📤 Делаю commit + push..."
-
+echo "📤 Коммит и пуш отчёта..."
 git add -A
 
 if git diff --cached --quiet; then
-  echo "ℹ️ Нечего коммитить — отчёт не изменился."
+  echo "ℹ️ Нет изменений (отчёт не отличается)."
 else
-  git commit -m "update reports $(date)"
+  git commit -m "Add report $TIMESTAMP"
   git push origin HEAD
 fi
 
 # -------------------------------
-# 6) Генерация ссылки GitHub Pages
+# 7) Формируем ссылку GitHub Pages
 # -------------------------------
 USER=$(echo "$REPO_URL" | sed -E 's#.*github.com[:/](.*)/(.*)\.git#\1#')
 REPO=$(echo "$REPO_URL" | sed -E 's#.*github.com[:/](.*)/(.*)\.git#\2#')
 
-GH_PAGES_URL="https://${USER}.github.io/${REPO}/"
+GH_REPORT_URL="https://${USER}.github.io/${REPO}/report_$TIMESTAMP/"
+GH_INDEX_URL="https://${USER}.github.io/${REPO}/"
 
 # -------------------------------
-# 7) Готово
+# 8) Готово!
 # -------------------------------
 echo ""
 echo "🎉 Отчёт успешно опубликован!"
-echo "🔗 GitHub Pages:"
-echo "$GH_PAGES_URL"
+echo "----------------------------------------"
+echo "📄 Уникальная ссылка на отчёт:"
+echo "$GH_REPORT_URL"
 echo ""
-echo "Если Pages настроен на /docs — отчёт уже доступен."
+echo "📚 Список всех отчётов:"
+echo "$GH_INDEX_URL"
+echo "----------------------------------------"

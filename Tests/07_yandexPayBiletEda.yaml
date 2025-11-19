@@ -10,7 +10,9 @@ settings:
 - assertVisible: "Профиль"
 - tapOn: "Вт"
 - tapOn:
-    point: "73%,83%"
+    point: "26%,78%"  #левая карточка с фильмом на главном экране
+# - tapOn:
+#     point: "73%,83%"  #правая карточка с фильмом на главном экране
 - extendedWaitUntil:
     visible: "Смотреть в кино"
     timeout: 50000
@@ -20,14 +22,14 @@ settings:
       text: "КАРО 10 София"
 - runFlow:
     when:
-      visible: "10:20"
+      visible: "11:45"
     commands:
-        - tapOn: "10:20"
+        - tapOn: "11:45"
 - runFlow:
     when:
-      visible: "14:30"
+      visible: "14:50"
     commands:
-        - tapOn: "14:30"
+        - tapOn: "14:50"
 - assertVisible: "Выберите место"
 - runFlow:
     when:
@@ -36,13 +38,13 @@ settings:
         - tapOn:
             point: "50%,50%"
 - tapOn:
-    point: "53%,48%"
+    point: "18%,48%"
 - runFlow:
     when:
       notVisible: "Выберите тип билета"
     commands:
         - tapOn:
-            point: "67%,48%"
+            point: "23%,48%"
 - runFlow:
     when:
       notVisible: "Выберите тип билета"
@@ -144,4 +146,9 @@ settings:
 - takeScreenshot: orderId_yandexPayBiletEda
 - extendedWaitUntil:
     visible: "Код брони"
-    timeout: 200000
+    timeout: 400000
+- tapOn:
+    point: "8%,7%"
+- scrollUntilVisible:
+    element: "Код брони" # or any other selector
+    direction: DOWN

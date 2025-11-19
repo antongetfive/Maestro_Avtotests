@@ -1,0 +1,12 @@
+    
+    # 01_ochistka.yaml
+    # 02_zapusk.yaml
+    # 03_autorization.yaml
+    # 04_onbording.yaml
+
+# Покупки
+      # 05_yandexPayBilet.yaml
+      # 06_stopApp_1.yaml
+      # 07_yandexPayBiletEda.yaml
+      # 08_stopApp_2.yaml
+      09_sberBank.yaml
